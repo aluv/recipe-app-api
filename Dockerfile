@@ -7,7 +7,7 @@ WORKDIR /home/recipe
 
 ENV PYTHONUNBUFFERED 1
 
-COPY ./requirements.txt /home/recipe/requirements.txt
+ADD ./requirements.txt /home/recipe/requirements.txt
 RUN python -m venv venv
 RUN venv/bin/pip install --upgrade pip
 RUN venv/bin/pip install -r requirements.txt
