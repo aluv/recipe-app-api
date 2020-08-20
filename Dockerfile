@@ -9,8 +9,13 @@ ENV PYTHONUNBUFFERED 1
 
 ADD ./requirements.txt /home/recipe/requirements.txt
 RUN python -m venv venv
+
+RUN apk add --update --no-cache postgresql-client
+RUN apk add --update --no-cache --virtual .tmp-build-apps \
+    gcc libc-dev linux-headers postgresql-dev
 RUN venv/bin/pip install --upgrade pip
 RUN venv/bin/pip install -r requirements.txt
+RUN apk del .tmp-build-apps
 
 COPY app app
 COPY boot.sh ./
