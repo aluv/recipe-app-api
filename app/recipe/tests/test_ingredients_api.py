@@ -19,7 +19,7 @@ class PublicIngredientsApiTests(TestCase):
         self.client = APIClient()
 
     def test_login_required(self):
-        """Test tha tlogin is required to access the endpoint"""
+        """Test that login is required to access the endpoint"""
         res = self.client.get(INGREDIENTS_URL)
 
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
@@ -80,4 +80,3 @@ class PrivateIngredientsApiTests(TestCase):
         res = self.client.post(INGREDIENTS_URL, payload)
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
-
